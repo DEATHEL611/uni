@@ -3,7 +3,7 @@ Install the Google AI Python SDK
 pip install google-generativeai
 """
 import google.generativeai as genai
-genai.configure(api_key="AIzaSyBKtLl0KuRsVi-coW_BGB92xsC808wg1lU") # Aqui va la llave que usted va a generar de Gemini
+genai.configure(api_key="") # Aqui va la llave que usted va a generar de Gemini
 #Create the model
 generation_config = {
 "temperature": 1,
