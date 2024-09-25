@@ -29,22 +29,22 @@ root.geometry("700x700")
 
 # Colores para modo claro y oscuro
 colores_claros = {
-    "bg": "#f5f5f5",
+    "bg": "#c2d1be",
     "usuario": "#DCF8C6",
-    "gemini": "#EAEAEA",
+    "gemini": "#abbfa6",
     "texto": "#000000",
-    "boton": "#4CAF50",
-    "entrada": "#FFFFFF",
+    "boton": "#8aa184",
+    "entrada": "#b6beb4",
     "boton_texto": "white",
 }
 
 colores_oscuros = {
-    "bg": "#2E2E2E",
+    "bg": "#17202a",
     "usuario": "#1E3F2E",
-    "gemini": "#3A3A3A",
+    "gemini": "#1d2833",
     "texto": "#FFFFFF",
-    "boton": "#555555",
-    "entrada": "#404040",
+    "boton": "#283747",
+    "entrada": "#1d2833",
     "boton_texto": "white",
 }
 
@@ -93,6 +93,18 @@ def agregar_mensaje(mensaje, tipo="usuario"):
         chat_box.insert(tk.END, "Tú: ", ("bold",))
         chat_box.insert(tk.END, mensaje + "\n", ("usuario",))
     else:
+        # Insertar imagen de perfil para Gemini
+        try:
+            img_perfil = Image.open(r"C:\Users\alejo\OneDrive\Pictures\imagenes_codigo\imagen.png")  # Ruta de la imagen del avatar
+            img_perfil = img_perfil.resize((30, 30), Image.LANCZOS)  # Ajustar tamaño
+            img_perfil = ImageTk.PhotoImage(img_perfil)
+            chat_box.image_create(tk.END, image=img_perfil)  # Crear la imagen en el chat
+            chat_box.image = img_perfil  # Referencia para evitar que se borre
+            
+        except Exception as e:
+            print(f"Error al cargar la imagen de perfil: {e}")
+        
+        # Insertar mensaje de Gemini formateado
         formatear_salida(mensaje)
 
     chat_box.see(tk.END)  # Scroll automático
@@ -187,3 +199,4 @@ except Exception as e:
     print(f"Error al cargar la imagen de Gemini: {e}")
 
 root.mainloop()
+
